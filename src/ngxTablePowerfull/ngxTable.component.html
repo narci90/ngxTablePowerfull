@@ -1,0 +1,200 @@
+<div class="row container-powerfull" *ngIf="!config.onlyTable" [ngClass]="{ 'maximize': !!fullscreen }">
+    <div class="col-12 ngx-table-powerfull">
+      <div [ngClass]="{'card': (!!config.cardBody || !!fullscreen) && (!viewDialog || !!fullscreen)}" >
+        <div class="card-body" [ngClass]="{ 'table-dialog': !!viewDialog && !!fullscreen }">
+            <h4 class="card-title" [ngClass]="{ 'min-height': !!config.visibleTitle || !!config.fullscreen }">{{ !!config.visibleTitle ? name : '' }}</h4>
+
+            <div class="row mt-4 px-4">
+                <button *ngIf="!!config.fullscreen" [ngClass]="{ 'button-fullscreen': !viewDialog, 'button-fullscreen-dialog': !!viewDialog, 'button-fullscreen-dialog-f': !!viewDialog && !!fullscreen  }" (click)="toggleFullscreen()">
+                    <i *ngIf="!fullscreen" class="material-icons" [matTooltip]="config.language.maximize">fullscreen</i>
+                    <i *ngIf="!!fullscreen" class="material-icons" [matTooltip]="config.language.restore">fullscreen_exit</i>
+                </button>
+
+                <i *ngIf="!!viewDialog" class="material-icons" [ngClass]="{ 'default-close': !fullscreen, 'fullscreen-close': !!fullscreen }" (click)="closeDialog()" [matTooltip]="config.language.close">close</i>
+            </div>
+
+            <div class="form-group">
+                <div class="row" style="min-height: 48px !important;">
+
+                    <div class="col-12 filter-search" [ngClass]="{'col-lg-6': !!rowsTempTableAdd.length && !!config.viewDialogTable , 'col-lg-7': !rowsTempTableAdd.length || !config.viewDialogTable }">
+
+                        <mat-form-field *ngIf="!!config.filter && config.classTable === 'material'" class="example-full-width" style="width: 100%; margin-top: -10px !important;">
+                            <mat-label>{{ config.language.filterResults }}</mat-label>
+                            <input matInput #search id="search" type="text">
+                        </mat-form-field>
+
+                        <input #search *ngIf="!!config.filter && config.classTable === 'boostrap'" id="search" class="form-control" type="text" [placeholder]="config.language.filterResults"/>
+
+                        <div *ngIf="!!config.filter && !!config.matchWordButtons" class="setting-word">
+                            <span class="case" [matTooltip]="config.language.matchCase" [ngClass]="{'active-setting-word': matchCase }" (click)="matchCase = !matchCase; setLocalStorage('matchCase'); updateFilter(search.nativeElement.value)" >Aa</span>
+                            <span class="whole" [matTooltip]="config.language.matchWholeWord" [ngClass]="{'active-setting-word-whole': matchWholeWord }" (click)="matchWholeWord = !matchWholeWord; setLocalStorage('matchWholeWord'); updateFilter(search.nativeElement.value)" >Abl</span>
+                        </div>
+
+                        <ng-multiselect-dropdown
+                            *ngIf="!!selectColumnsFilter"
+                            class="selected-columns"
+                            [placeholder]="config.language.selectColumns"
+                            [data]="columnsFilterList"
+                            [(ngModel)]="selectedColumnsFilter"
+                            [settings]="dropdownSettings"
+                            (ngModelChange)="onChangeSelectFilter()"
+                        >
+                        </ng-multiselect-dropdown>
+
+                    </div>
+
+                    <div class="col-12 col-lg-1 setting">
+                        <i *ngIf="!selectColumnsFilter && !!config.filter && !!config.filterByColumn" class="material-icons settings-search" [matTooltip]="config.language.configureFilter" (click)="openConfigFilter()">settings</i>
+                        <i *ngIf="!!selectColumnsFilter && !!config.filter && !!config.filterByColumn" class="material-icons settings-search" [matTooltip]="config.language.closeConfigure" (click)="openConfigFilter()">close</i>
+                    </div>
+
+                    <div class="col-12 text-right" [ngClass]="{'col-lg-5': !!rowsTempTableAdd.length && !!config.viewDialogTable , 'col-lg-4': !rowsTempTableAdd.length || !config.viewDialogTable}">
+                        
+                        <button *ngIf="!!rowsTempTableAdd.length && !!config.viewDialogTable" class="btn btnPrimary-outline-generate" (click)="openDialog()">
+                            {{ config.multipleButtonText }}
+                            {{ (!!config.visibleNumberRowsButton) ? ((rowsTempTableAdd.length > 1 ) ? rowsTempTableAdd.length + ' ' + config.language.rows : rowsTempTableAdd.length + ' ' + config.language.row) : ''}}
+                        </button>
+
+                        <button *ngIf="!!rows.length && (!!config.exportExcel || !!config.exportPdf)" mat-raised-button class="btn btn-export btnPrimary-outline" [matMenuTriggerFor]="exportMenu">
+                            {{ config.language.export }} <i class="material-icons float-right mt-2">arrow_drop_up</i>
+                        </button>
+    
+                        <mat-menu #exportMenu="matMenu" class="menu-more" yPosition="above" xPosition="after">
+                            <button *ngIf="!!config.exportExcel" class="mat-menu-item" (click)="export(1)">
+                                <i  class="fa fa-file-excel-o" style="margin: .8rem 1rem 0 -.4em; font-size: 20px;"></i>EXCEL
+                            </button>
+                            <button *ngIf="!!config.exportPdf" class="mat-menu-item" (click)="export(2)">
+                                <i class="fa fa-file-pdf-o" style="margin: .8rem 1rem 0 -.4em; font-size: 20px;"></i>PDF
+                            </button>
+                        </mat-menu>
+
+                    </div>
+
+                </div>
+            </div>
+
+            <div *ngIf="!!config.editableColumns" class="col-12 col-lg-12 add-column">
+                <i *ngIf="!!config.configureColumns" class="material-icons configure" [matTooltip]="config.language.configureColumns" (click)="configureColumns()">view_headline</i>
+                <i *ngIf="!!config.editColumn" class="material-icons edit" [matTooltip]="config.language.editColumn" (click)="editColumn()">edit</i>
+                <i *ngIf="!!config.addColumn" class="material-icons add" [matTooltip]="config.language.newColumn" (click)="addColumn()">add</i>
+                <i *ngIf="!!config.deleteColumn" class="material-icons delete" [matTooltip]="config.language.deleteColumn" (click)="deleteColumn()">delete</i>
+            </div>
+
+            <ng-container *ngIf="0 == 1 else tableContainer"></ng-container>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<ng-container *ngIf="!!config.onlyTable">
+    <ng-container *ngIf="0 == 1 else tableContainer"></ng-container>
+</ng-container>
+
+
+<ng-template #tableContainer>
+    <ngx-datatable
+    #table 
+    class="material"
+    [ngClass]="{'striped': !!config.striped }"
+    [style.height]="(!!viewDialog) ? 
+        ((!!fullscreen) ? (!!selectColumnsFilter ? 'calc(100vh - '+ height.fullscreenFilter +'px)' : 'calc(100vh - ' + height.fullscreen +'px)' ) : '400px') 
+        :'calc(100vh - ' + ((!!fullscreen) ? 
+            (!!selectColumnsFilter ? height.fullscreenFilter : height.fullscreen ) 
+            : (!config.collapsed ?
+            (!!selectColumnsFilter ? (!!config.editableColumns ? config.subtractHeightCollapsed + 55 : config.subtractHeightCollapsed + 40 ): (!!config.editableColumns ? config.subtractHeightCollapsed + 15 : config.subtractHeightCollapsed )): 
+            (!!selectColumnsFilter ? (!!config.editableColumns ? config.subtractHeight + 55 : config.subtractHeight + 40 ) : (!!config.editableColumns ? config.subtractHeight + 15 : config.subtractHeight) )) ) + 'px)'" 
+    [style.minHeight]="config.minHeight + 'px'"  
+    [columns]="columns" 
+    [rows]="rows"
+    [columnMode]="config.columnMode"
+    [headerHeight]="config.headerHeight"
+    [footerHeight]="(!!dataSumary.length) ? (config.sumaryFooterHeight + config.footerHeight) : config.footerHeight"
+    [rowHeight]="config.rowHeight"
+    [limit]="config.limitResult"
+    [scrollbarV]="(!!config.limitResult) ? false : true"
+    [scrollbarH]="(!!config.limitResult) ? false : true"
+    [rowClass]="getRowClass" 
+    [messages]="{ emptyMessage: config.language.emptyMessage }"
+    [reorderable]="false"
+    (activate)="onActivate($event)"
+    (sort)="onSort($event)"
+>
+
+    <ng-container *ngFor="let c of columns;let i = index">
+        
+        <ngx-datatable-column name="{{ c.name }}" prop="{{ c.prop }}" *ngIf="!c.hide && !!c.visible" [sortable]="!!config.sortable && !!c.sortable" [frozenLeft]="!!c.fixed ? true : false" [flexGrow]="c.flexGrow">
+
+            <ng-template let-row="row" ngx-datatable-cell-template>
+
+                <span 
+                    *ngIf="!editing[row[indexColumn] + '-' + c.prop]" 
+                    [matTooltip]="(!!c.tooltip) ? ((!!c.tooltipText.length) ? c.tooltipText : (!!(c.formatDate) ? (row[c.prop] | date: c.formatDate) : row[c.prop]) ): null"
+                    [innerHTML]="!!(c.formatDate) ? (row[c.prop] | date: c.formatDate) : row[c.prop]" (click)="(!!c.action) ? sendEvent(c.action, row) : ''"  
+                    (dblclick)="(!!c.editable && !c.action) ? editing[row[indexColumn] + '-' + c.prop] = true : ''"
+                    >
+                </span>
+
+                <i *ngIf="!editing[row[indexColumn] + '-' + c.prop] && !!c.editable" 
+                    class="material-icons edit-icon"
+                    (click)="editing[row[indexColumn] + '-' + c.prop] = true">
+                    edit
+                </i>
+
+                <input 
+                    *ngIf="editing[row[indexColumn] + '-' + c.prop] && !!c.editable && !c.action"
+                    autofocus
+                    (blur)="updateValue($event, c.prop, row[indexColumn])"
+                    [type]="!!(c.formatDate) ? 'date' : 'text'"
+                    [value]="row[c.prop]"
+              />
+
+            </ng-template>
+        </ngx-datatable-column>
+    </ng-container>
+
+    <ngx-datatable-footer *ngIf="!!dataSumary.length">
+        <ng-template
+          ngx-datatable-footer-template
+          let-rowCount="rowCount"
+          let-pageSize="pageSize"
+          let-selectedCount="selectedCount"
+          let-curPage="curPage"
+          let-offset="offset"
+        >
+            <div class="container-footer">
+            
+                <div class="header-footer" [style.height]="(config.sumaryFooterHeight - 30 )+ 'px'" [ngClass]="{ 'sumary-right': config.positionSumary == 'right' }">
+                    <div class="data-column" *ngFor="let data of dataSumary" style="display:inline-block">
+                        <strong style="margin-right: 10px;">{{ data.text + ': '}}</strong><span style="margin-right: 5px;">{{ data.column + ':' }}</span>{{data.data + ' ' + data.unit }}
+                    </div>
+                </div>
+
+                <hr style="width:100%" />
+
+                <div class="bottom-footer" [style.height]="config.footerHeight + 'px'">
+                    <div class="number-row-info">{{ rowCount }}</div>
+
+                    <datatable-pager
+                    class="container-pager"
+                    [pagerLeftArrowIcon]="'datatable-icon-left'"
+                    [pagerRightArrowIcon]="'datatable-icon-right'"
+                    [pagerPreviousIcon]="'datatable-icon-prev'"
+                    [pagerNextIcon]="'datatable-icon-skip'"
+                    [page]="curPage"
+                    [size]="pageSize"
+                    [count]="rowCount"
+                    [hidden]="!((rowCount / pageSize) > 1)"
+                    (change)="table.onFooterPage($event)">
+                    </datatable-pager>
+
+                </div>
+
+            </div>
+
+        </ng-template>
+    </ngx-datatable-footer>
+
+</ngx-datatable>
+
+</ng-template>

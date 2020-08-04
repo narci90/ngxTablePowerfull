@@ -1,0 +1,42 @@
+.unit{
+    font-size: 16px;
+    padding-left: 40px;
+}
+
+.unit-text{
+    margin-right: 10px;
+    margin-top: 8px;
+}
+
+.header-title {
+    padding: .5rem;
+    font-size: 1.5rem;
+    background: #efefef;
+    margin: 0px !important;
+    width: 40vw;
+    padding-left: 25px;
+    padding-top: 15px;
+    margin-left: -25px !important;
+    margin-top: -25px !important;
+    margin-bottom: 20px !important;
+}
+
+
+.footer-actions {
+    background: #efefef;
+    width: 40vw;
+    padding: 1rem !important;
+    margin-left: -25px !important;
+    margin-right: -24px;
+    margin-top: 20px;
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 20px !important;
+}
+
+
+edit-column-dialog-component{
+    mat-dialog-content{
+        overflow-y: auto !important;
+    }
+}

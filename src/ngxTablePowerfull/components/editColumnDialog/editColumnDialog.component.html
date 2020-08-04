@@ -1,0 +1,109 @@
+<header class="header-title">{{ title }}</header>
+<!-- <title class="title" mat-dialog-title>{{ title }}</title> -->
+
+<mat-dialog-content>
+    <div *ngIf="data.config.classTable === 'boostrap'"> 
+
+        <div *ngIf="data.action === 1 || data.action === 2" class="form-group">
+    
+            <label for="name">{{ data.config.language.name }}</label>
+            <input id="name" name="name" class="form-control" required
+            [(ngModel)]="nameColumn" #name="ngModel" />
+    
+            <label *ngIf="data.action === 1" for="textN" style="margin-top: 20px;">{{ data.config.language.predefinedContent }}</label>
+            <input *ngIf="data.action === 1" id="textN" name="textN" class="form-control" required
+            [(ngModel)]="predefinedText" #name="ngModel" />
+    
+            <label for="position" style="margin-top: 20px;">{{ (data.action === 1) ? data.config.language.position : data.config.language.newPosition }}</label>
+            <select id="position" name="position" class="form-control" required
+            [(ngModel)]="positionColumn" #name="ngModel">
+                <option *ngFor="let c of numberColumns; let i = index" [value]="i + 1">{{ i + 1}}</option>
+            </select>
+    
+        </div>
+    
+        <div *ngIf="data.action === 3|| data.action === 2" class="form-group">
+    
+            <label for="col">{{ data.config.language.column }}</label>
+            <select id="col" name="col" class="form-control" required
+            [(ngModel)]="column" #name="ngModel" (change)="changeColumn()">
+                <option *ngFor="let c of columns; let i = index" [value]="i + 1">{{ c.name }}</option>
+            </select>
+    
+        </div>
+    
+    </div>
+    
+    <div *ngIf="data.config.classTable === 'material'"> 
+    
+        <div *ngIf="data.action === 1 || data.action === 2">
+    
+            <mat-form-field class="col-12">
+                <mat-label>{{ data.config.language.name }}</mat-label>
+                <input matInput id="name" name="name" [(ngModel)]="nameColumn" #name="ngModel">
+            </mat-form-field>
+    
+            <mat-form-field  *ngIf="data.action === 1" class="col-12" style="margin-top: 20px;">
+                <mat-label>{{ data.config.language.predefinedContent }}</mat-label>
+                <input matInput id="textN" name="textN" [(ngModel)]="predefinedText" #name="ngModel">
+            </mat-form-field>
+    
+            <mat-form-field class="col-12"  style="margin-top: 20px;">
+                <mat-label>{{ (data.action === 1) ? data.config.language.position : data.config.language.newPosition }}</mat-label>
+                <mat-select id="position" name="position"  [(ngModel)]="positionColumn" #name="ngModel">
+                  <mat-option *ngFor="let c of numberColumns; let i = index" [value]="i + 1">
+                    {{ i + 1 }}
+                  </mat-option>
+                </mat-select>
+            </mat-form-field>
+    
+        </div>
+    
+        <div *ngIf="data.action === 3|| data.action === 2" class="form-group">
+    
+            <mat-form-field class="col-12" style="margin-top: 20px;">
+                <mat-label>{{ data.config.language.column }}</mat-label>
+                <mat-select id="col" name="col" [(ngModel)]="column" #name="ngModel" (selectionChange)="changeColumn()">
+                  <mat-option  *ngFor="let c of columns; let i = index" [value]="i + 1">
+                    {{ c.name }}
+                  </mat-option>
+                </mat-select>
+            </mat-form-field>
+    
+        </div>
+    
+    </div>
+    
+    <div [style.marginLeft]="(data.config.classTable === 'material') ? '15px' : '5px'">
+    
+        <div *ngIf="data.action === 1 || data.action === 2">
+            <mat-checkbox [color]="'primary'" [(ngModel)]="editable">{{ data.config.language.editable }}</mat-checkbox>
+        </div>
+    
+        <div *ngIf="data.action === 1 || data.action === 2">
+            <label for="position" style="margin-top: 20px;">{{ data.config.language.applyFunction }}:</label>
+            <table>
+                <tr *ngFor="let f of functions; let i = index">
+                    <td><mat-checkbox [color]="'primary'" [(ngModel)]="applyFunctions[i]">{{ data.config.language[f.name] }}</mat-checkbox></td>
+                    <td class="unit">
+                        <div *ngIf="data.config.classTable === 'boostrap'"><input id="unit" name="unit" class="form-control" [(ngModel)]="unitsFunctions[i]" style="width: 70px;" [disabled]="!applyFunctions[i]" placeholder="{{ data.config.language.units }}"/></div>
+    
+                        <mat-form-field  *ngIf="data.config.classTable === 'material'"  style="width: 70px;">
+                            <mat-label>{{ data.config.language.units }}</mat-label>
+                            <input matInput id="unit" name="unit" [(ngModel)]="unitsFunctions[i]" #name="ngModel" [disabled]="!applyFunctions[i]">
+                        </mat-form-field>
+    
+                    </td>
+                </tr>
+            </table>
+        </div>
+    
+    </div>
+</mat-dialog-content>
+
+<mat-dialog-actions class="footer-actions" style="float: right;">
+
+    <button mat-button (click)="close()">{{ data.config.language.close }}</button>
+    <button mat-button class="btn btnPrimary" (click)="onSubmit()">{{ data.config.language.accept }}</button>
+
+</mat-dialog-actions>
