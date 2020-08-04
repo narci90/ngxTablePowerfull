@@ -1,6 +1,5 @@
-===========================
+
        INSTALLATION 
-===========================
 
 1. Installation of ngx-datatable
 
@@ -44,17 +43,13 @@ npm install jspdf jspdf-autotable
 
 
 
-============================
            ADD
-============================
 
 1. import NgxTablePowerfullModule of 'ngxTablePowerfull/'ngxTablePowerfull.module' in your imports module
 2. import NotificationNgxService of 'ngxTablePowerfull/services/notificationNgxService.service' in your component for use services update table
 
 
-============================
     DEFAULT CONFIG TABLE
-============================
 
     visibleTitle: true
     filter: true
@@ -99,9 +94,7 @@ npm install jspdf jspdf-autotable
     matchWordButtons: true               // Hide or show the buttons to filter by whole words and distinguish in upper and lower case
 
 
-==============================================================
    CONFIGURE NEW LANGUAGE OR MODIFY ONE THAT ALREADY EXISTS
-==============================================================
 
     selectColumns: 'Select Columns',
     filterResults: 'Filter results',
@@ -176,9 +169,7 @@ npm install jspdf jspdf-autotable
                 }
             }
 
-=================================
        CONFIG COLUMN
-=================================
 
     prop: 'id-column'
     name: 'name-column'
@@ -246,9 +237,7 @@ npm install jspdf jspdf-autotable
 
 
 
-=================================
     TABLE INPUT PROPERTIES
-=================================
 
     [name]="name table"
     [config]="object config of table"                                                  // This property is optional if it is not included it will start with the default configuration mentioned above on line 58
@@ -293,9 +282,7 @@ npm install jspdf jspdf-autotable
 
         }
 
-=================================
        EVENT TABLE
-=================================
 
     (event)             // Name action of column + Row
     (click)             // name action + Row click
@@ -311,9 +298,7 @@ npm install jspdf jspdf-autotable
 
     * It is necessary at the time of the request to send notification to the table with the property visibleDataTable: true | dataTable: true
 
-==================================
  NOTIFICATION SYSTEM TO THE TABLE
-==================================
 
 import NotificationNgxService of 'Services og NgxTablepowerfull module';
 
@@ -332,9 +317,7 @@ Notification service provided by the one provided by the NgxTablepowerfull modul
     this.notificationNgxService.raise('Table name', { visibleDataTable: true });
 
 
-========================================
       UPDATE AND ADD NEW STYLES
-========================================
 
 @Component({
     ...,
