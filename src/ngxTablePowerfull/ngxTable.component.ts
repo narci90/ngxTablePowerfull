@@ -43,6 +43,7 @@ export class NgxTableComponent  {
     @Input() public viewDialog: boolean = false;
     @Input() public beforeAction: () => Promise<boolean> = null;
     @Input() public actionsTocontrol: string[] = [];
+    @Input() public selected: string;
     @Output() public event = new EventEmitter<any>();
     @Output() public click = new EventEmitter<any>();
     @Output() public dblclick = new EventEmitter<any>();
@@ -140,6 +141,8 @@ export class NgxTableComponent  {
 
         this.matchCase = !!this.getLocalStorage('matchCase');
         this.matchWholeWord = !!this.getLocalStorage('matchWholeWord');
+
+        this.backgroundActiveRow = !!this.selected ? this.selected : null;
     }
 
     ngAfterViewInit(): void {
