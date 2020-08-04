@@ -572,25 +572,25 @@ export class NgxTableComponent  {
     public updateFilter(val: any) {
 
         const value = val.toString().toLowerCase().trim();
-        const count = this.columns.length;
-        const keys = Object.keys(this.temp[0]);
         const columnsFilter = this.selectedColumnsFilter.map( c => c.item_id);
         const columnFormat = this.columns.filter(c => !!c.formatDate);
-
+        
         this.rows = this.temp.filter(item => {
-            let keysColumn = Object.keys(item);
+ 
+            const keysColumn = Object.keys(item);
 
-            for (let i = 0; i < count; i++) {
+            for (let i = 0; i < keysColumn.length; i++) {
+
                 if (!!columnsFilter.includes(keysColumn[i]) &&
-                    (item[keys[i]] &&
-                    item[keys[i]]
+                    (item[keysColumn[i]] &&
+                    item[keysColumn[i]]
                         .toString()
                         .toLowerCase()
                         .indexOf(value) !== -1) || 
                     (!!columnsFilter.includes(keysColumn[i]) &&
                     !!columnFormat.some( c => c.prop == keysColumn[i] && 
                     (this.datePipe.transform(
-                        item[keys[i]], 
+                        item[keysColumn[i]], 
                         columnFormat.find(c => c.prop == keysColumn[i]).formatDate))
                         .toString()
                         .toLowerCase()
@@ -600,14 +600,14 @@ export class NgxTableComponent  {
                     if(!!value){
 
                         const compareValue = (!!columnFormat.some( c => c.prop == keysColumn[i]))
-                            ? this.datePipe.transform(item[keys[i]], columnFormat.find(c => c.prop == keysColumn[i]).formatDate).toString()
-                            : item[keys[i]].toString().trim();
+                            ? this.datePipe.transform(item[keysColumn[i]], columnFormat.find(c => c.prop == keysColumn[i]).formatDate).toString()
+                            : item[keysColumn[i]].toString().trim();
                         
                         if(!!this.matchWholeWord && !!this.matchCase && compareValue == val.toString().trim()){
                             return true;
                         } else if(!!this.matchCase && !this.matchWholeWord && compareValue.indexOf(val.toString().trim()) !== -1){
                             return true;
-                        } else if(!this.matchCase && !!this.matchWholeWord && compareValue.toLowerCase() == val.toString().trim()){
+                        } else if(!this.matchCase && !!this.matchWholeWord && compareValue.toLowerCase() == val.toString().toLowerCase().trim()){
                             return true;
                         } else if(!this.matchWholeWord && !this.matchCase){
                             return true;
