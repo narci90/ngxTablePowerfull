@@ -184,7 +184,7 @@ npm install jspdf jspdf-autotable
     name: 'name-column'
     action: 'name-action'                                         // Columns with actions will be automatically positioned at the end and they will not be exported in any kind of event or action
     formatDate: 'format'                                          // Format for data type Date (* Date type is not controlled without an associated format *)(Only formats supported by Date pipe)
-    index: false                                                  // Property that indicates the index column of the table, there can only be one column of this type. If it is not found, an automatic one will be generated.
+    index: false                                                  // Property that indicates the index column of the table, there can only be one column of this type. If it is not found, an automatic one will be        generated.
     hide: false                                                   // It only applies in the index column, showing it or not
     tag: 'tag-type'                                               // Only applies to columns with any action
     attributes: [name: 'name-atribute', value: 'value-atribute']  // Only applies to columns with any action
