@@ -454,7 +454,10 @@ export class NgxTableComponent  {
 
         if(e.type == ActionsType.CLICK || e.type == ActionsType.DBL_CLICK){ 
 
-            if(!e.event.shiftKey){
+            if(!!this.config.singleSelection && !!this.backgroundActiveRow && (!!e.event.altKey || !!e.event.ctrlKey || !!e.event.shiftKey))
+                this.singleSelection.emit({name: ActionsType.SINGLE_SELECTION, row: null});
+
+            if(!e.event.shiftKey && !e.event.altKey && !e.event.ctrlKey){
                 (this.backgroundActiveRow != e.row[this.indexColumn]) ? this.backgroundActiveRow = e.row[this.indexColumn] : ((e.type != ActionsType.DBL_CLICK) ? this.backgroundActiveRow = null : '');
                 (e.type == ActionsType.CLICK) ? this.click.emit({name: e.type, row: e.row}) : this.dblclick.emit({name: e.type, row: e.row});
             }   
@@ -540,14 +543,15 @@ export class NgxTableComponent  {
 
             if(!!e.event.altKey && !!e.event.ctrlKey && !!this.config.multipleSelection){
                 this.rowsTempTableAdd = this.rows.map(r => r[this.indexColumn]);
+                this.backgroundActiveRow = null;
             }
                 
-
             if(!!this.config.multipleSelection && (!!e.event.altKey || !!e.event.ctrlKey || !!e.event.shiftKey)){
                 this.multipleSelection.emit({ name: ActionsType.MULTIPLE_SELECTION, rows: this.rowsTempTableAdd.map(data => this.data.find( r => r[this.indexColumn] === data)) || [] });
             }
 
-            if(!!this.config.singleSelection && !e.event.altKey && !e.event.ctrlKey && !e.event.shiftKey && (e.type == ActionsType.CLICK || e.type == ActionsType.DBL_CLICK )){
+            if(!!this.config.singleSelection && !e.event.altKey && !e.event.ctrlKey && !e.event.shiftKey && (e.type == ActionsType.CLICK || e.type == ActionsType.DBL_CLICK )
+                && !this.rowsTempTableAdd.includes(e.row[this.indexColumn])){
                 this.singleSelection.emit({name: ActionsType.SINGLE_SELECTION, row: (!!this.backgroundActiveRow) ? e.row : null});
             }
             
