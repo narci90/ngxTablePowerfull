@@ -576,32 +576,29 @@ export class NgxTableComponent  {
         const columnFormat = this.columns.filter(c => !!c.formatDate);
         
         this.rows = this.temp.filter(item => {
- 
-            const keysColumn = Object.keys(item);
 
-            for (let i = 0; i < keysColumn.length; i++) {
+            return Object.keys(item).some( k => {
 
-                if (!!columnsFilter.includes(keysColumn[i]) &&
-                    (item[keysColumn[i]] &&
-                    item[keysColumn[i]]
+                if (!!columnsFilter.includes(k) 
+                    && (item[k] 
+                    && item[k]
                         .toString()
                         .toLowerCase()
-                        .indexOf(value) !== -1) || 
-                    (!!columnsFilter.includes(keysColumn[i]) &&
-                    !!columnFormat.some( c => c.prop == keysColumn[i] && 
-                    (this.datePipe.transform(
-                        item[keysColumn[i]], 
-                        columnFormat.find(c => c.prop == keysColumn[i]).formatDate))
+                        .indexOf(value) !== -1) 
+                    || (!!columnsFilter.includes(k) 
+                        && !!columnFormat.some( c => c.prop == k 
+                        && (this.datePipe.transform(
+                            item[k], 
+                            columnFormat.find(c => c.prop == k).formatDate))
                         .toString()
                         .toLowerCase()
-                        .indexOf(value) !== -1))||
-                    !value
+                        .indexOf(value) !== -1))
+                    || !value
                 ) {
                     if(!!value){
-
-                        const compareValue = (!!columnFormat.some( c => c.prop == keysColumn[i]))
-                            ? this.datePipe.transform(item[keysColumn[i]], columnFormat.find(c => c.prop == keysColumn[i]).formatDate).toString()
-                            : item[keysColumn[i]].toString().trim();
+                        const compareValue = (!!columnFormat.some( c => c.prop == k))
+                            ? this.datePipe.transform(item[k], columnFormat.find(c => c.prop == k).formatDate).toString()
+                            : item[k].toString().trim();
                         
                         if(!!this.matchWholeWord && !!this.matchCase && compareValue == val.toString().trim()){
                             return true;
@@ -612,11 +609,11 @@ export class NgxTableComponent  {
                         } else if(!this.matchWholeWord && !this.matchCase){
                             return true;
                         }
-                    } else {
+                    } else 
                         return true;
-                    }
-                }
-            }
+                } else
+                    return false;
+            });
         });
 
     }
