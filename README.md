@@ -259,7 +259,7 @@ npm install jspdf jspdf-autotable
                                                                                        // affected rows or columns  
 
     [actionsTocontrol]="Array of actions that will call name function of beforeAction" // Actions available to control by the user before being executed. [actionsTocontrol]="['newColumn', 'editColumn', 'deleteColumn', 'updateRow']"
-    [seleceted]="Data from the index column of the selected index row"
+    [selected]="Data from the index column of the selected index row"
 
 
     - Example instantiate simple table:
