@@ -536,6 +536,7 @@ export class NgxTableComponent  {
 
             if(!!e.event.shiftKey && !this.viewDialog && !e.event.ctrlKey && !!this.config.multipleSelection){
                 this.rowsTempTableAdd = [];
+                this.backgroundActiveRow = null;
                 this.firstIndexAltKey = null;
                 this.alt = false;
                 this.asc = true;
