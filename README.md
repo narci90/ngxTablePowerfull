@@ -1,6 +1,6 @@
+= 
+    INSTALLATION
 =
-       INSTALLATION 
-
 
 1. Installation of ngx-datatable
 
@@ -46,15 +46,15 @@ npm install jspdf jspdf-autotable
 
 =
            ADD
-
+=
 
 1. import NgxTablePowerfullModule of 'ngxTablePowerfull/'ngxTablePowerfull.module' in your imports module
 2. import NotificationNgxService of 'ngxTablePowerfull/services/notificationNgxService.service' in your component for use services update table
 
 
-============================
+=
     DEFAULT CONFIG TABLE
-============================
+=
 
     visibleTitle: true
     filter: true
@@ -101,7 +101,7 @@ npm install jspdf jspdf-autotable
 
 =
    CONFIGURE NEW LANGUAGE OR MODIFY ONE THAT ALREADY EXISTS
-
+=
 
     selectColumns: 'Select Columns',
     filterResults: 'Filter results',
@@ -178,7 +178,7 @@ npm install jspdf jspdf-autotable
 
 =
        CONFIG COLUMN
-
+=
 
     prop: 'id-column'
     name: 'name-column'
@@ -248,7 +248,7 @@ npm install jspdf jspdf-autotable
 
 =
     TABLE INPUT PROPERTIES
-
+=
 
     [name]="name table"
     [config]="object config of table"                                                  // This property is optional if it is not included it will start with the default configuration mentioned above on line 58
@@ -295,7 +295,7 @@ npm install jspdf jspdf-autotable
 
 =
        EVENT TABLE
-
+=
 
     (event)             // Name action of column + Row
     (click)             // name action + Row click
@@ -313,7 +313,7 @@ npm install jspdf jspdf-autotable
 
 =
  NOTIFICATION SYSTEM TO THE TABLE
-
+=
 
 import NotificationNgxService of 'Services og NgxTablepowerfull module';
 
@@ -334,7 +334,7 @@ Notification service provided by the one provided by the NgxTablepowerfull modul
 
 =
       UPDATE AND ADD NEW STYLES
-
+=
 
 @Component({
     ...,
