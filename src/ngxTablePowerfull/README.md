@@ -63,6 +63,7 @@ npm install jspdf jspdf-autotable
     exportExcel: true
     exportPdf: true
     editableColumns: true
+    configureColumns: true
     addColumn: true
     editColumn: true
     deleteColumn: true
