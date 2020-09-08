@@ -725,14 +725,30 @@ export class NgxTableComponent  {
 
                 try {
                     if(typeof a[prop] == 'number' && typeof b[prop] == 'number'){
+
                         return (dir == 'asc') ?  a[prop] - b[prop] : b[prop] - a[prop];
+
+                    } else if((typeof a[prop] == 'number' && typeof b[prop] != 'number') || (typeof a[prop] != 'number' && typeof b[prop] == 'number') ){
+
+                        return (dir == 'asc') 
+                        ? typeof a[prop] == 'number' 
+                            ? 1 
+                            : -1
+                        : typeof a[prop] == 'number'   
+                            ? -1
+                            : 1
+
                     } else if(!!column.formatDate){
+
                         const f1 = new Date(a[prop]).getTime();
                         const f2 = new Date(b[prop]).getTime();
                         return (dir == 'asc') ?  f1 - f2 : f2 - f1;
+
                     } else {
+
                         let res = (a[prop].localeCompare(b[prop], undefined, { numeric: column.sort.numeric }));
                         return (dir == 'asc') ? res : -1*res;
+                        
                     }
             
                 } catch (err) {
