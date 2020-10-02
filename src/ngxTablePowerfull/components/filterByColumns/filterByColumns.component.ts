@@ -1,6 +1,6 @@
 import { Component, Inject, ViewEncapsulation} from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-import { FieldsType } from 'src/ngxTablePowerfull/common/fields.type';
+import { FieldsType } from '../../common/fields.type';
 
 @Component({
     selector: 'filter-by-columns-component',

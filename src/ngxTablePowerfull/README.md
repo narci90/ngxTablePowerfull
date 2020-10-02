@@ -4,7 +4,7 @@
 
 1. Installation of ngx-datatable
 
-npm i @swimlane/ngx-datatable --save
+npm i @swimlane/ngx-datatable@16.0.2 --save
 
 =====================================================
 
@@ -22,7 +22,7 @@ ng add @angular/material
 
 3. Installation Multiselect Dropdown
 
-npm install ng-multiselect-dropdown
+npm install ng-multiselect-dropdown@0.2.10
 
 
 =====================================================
@@ -37,7 +37,7 @@ npm install file-saver --save
 
 5. Installation Export to PDF
 
-npm install jspdf --save
+npm install jspdf@1.5.3 --save
 
 npm install jspdf jspdf-autotable
 
