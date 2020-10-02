@@ -1,0 +1,80 @@
+<h2 mat-dialog-title>{{description}}</h2>
+<header>{{ data.config.language.filterByColumns }}</header>
+<mat-dialog-content *ngIf="!!loadData">
+
+    <div class="row mx-1">
+
+        <div *ngFor="let col of columns" [class]="'mb-2 col-'+ col.field.size">
+
+            <ng-container *ngIf="data.config.classTable != 'material'">
+
+                <label [for]="col.prop">{{ col.name }}</label>
+
+                <input *ngIf="!![fieldsType.TEXT,fieldsType.NUMBER,fieldsType.DATE].includes(col.field.type) || !!col.formatDate" 
+                    [type]="!!col.formatDate ? 'date' : col.field.type" 
+                    class="form-control" 
+                    [id]="col.prop" 
+                    [name]="col.prop" 
+                    [(ngModel)]="obj[col.prop]" 
+                    #[col.prop]="ngModel" />
+        
+                <select *ngIf="col.field.type == fieldsType.SELECT" [id]="col.prop" [name]="col.prop" class="form-control" [(ngModel)]="obj[col.prop]" #[col.prop]="ngModel">
+                    <option value="" selected>{{ data.config.language.allOptions }}</option>
+                    <option *ngFor="let option of col.field.options" [value]="option">{{ option }}</option>
+                </select>
+
+            </ng-container>
+
+            <ng-container *ngIf="data.config.classTable === 'material'">
+
+                <mat-form-field class="col-12" *ngIf="fieldsType.DATE != col.field.type && !col.formatDate">
+
+                    <mat-label>{{ col.name }}</mat-label>
+
+                    <input matInput *ngIf="!![fieldsType.TEXT,fieldsType.NUMBER].includes(col.field.type)" 
+                        [type]="col.field.type" 
+                        [id]="col.prop" 
+                        [name]="col.prop" 
+                        [(ngModel)]="obj[col.prop]" 
+                        #[col.prop]="ngModel">
+
+                        <mat-select *ngIf="col.field.type == fieldsType.SELECT" [id]="col.prop" [name]="col.prop" [(ngModel)]="obj[col.prop]" #[col.prop]="ngModel">
+                            <mat-option *ngFor="let option of col.field.options" [value]="option">{{ option }}</mat-option>
+                        </mat-select>
+
+                </mat-form-field>
+
+
+                <mat-form-field class="col-12" *ngIf="fieldsType.DATE == col.field.type || !!col.formatDate">
+
+                    <mat-label>{{ col.name }}</mat-label>
+
+                    <input matInput
+                        [id]="col.prop" 
+                        [name]="col.prop" 
+                        [(ngModel)]="obj[col.prop]" 
+                        #[col.prop]="ngModel"
+                        [matDatepicker]="myDate">
+                    <mat-datepicker-toggle matSuffix [for]="myDate"></mat-datepicker-toggle>
+                    <mat-datepicker #myDate></mat-datepicker>
+
+                </mat-form-field>
+        
+
+
+            </ng-container>
+
+        </div>
+
+    </div>
+
+</mat-dialog-content>
+
+<mat-dialog-actions class="row m-0 py-2">
+    <div class="col-6">
+        <button class="col-12 btn btn-default" (click)="close()">{{ data.config.language.close }}</button>
+    </div>
+    <div class="col-6">
+        <button class="col-12 btn btnPrimary" (click)="save()">{{ data.config.language.search }}</button>
+    </div>
+</mat-dialog-actions>

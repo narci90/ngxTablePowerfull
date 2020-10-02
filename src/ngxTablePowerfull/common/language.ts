@@ -41,7 +41,9 @@ export const Language = [
             restore: 'Restaurar',
             visualize: 'Visualizar',
             matchWholeWord: 'Palabra exacta',
-            matchCase: 'Distinción entre mayusculas y minúsculas'
+            matchCase: 'Distinción entre mayusculas y minúsculas',
+            filterByColumns: 'Filtro por columnas',
+            allOptions: 'Todas las opciones'
         }
     },
     {   
@@ -86,7 +88,9 @@ export const Language = [
             restore: 'Restore',
             visualize: 'Visualize',
             matchWholeWord: 'Match whole word',
-            matchCase: 'Match case'
+            matchCase: 'Match case',
+            filterByColumns: 'Filter by columns',
+            allOptions: 'All options'
         }
     }
 

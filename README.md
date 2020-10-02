@@ -57,8 +57,10 @@ npm install jspdf jspdf-autotable
 =
 
     visibleTitle: true
-    filter: true
-    filterByColumn: true
+    filter: true                         // Simple filter
+    filterByColumn: true                 // Settings for the simple filter, which allows you to mark and unmark columns
+    matchWordButtons: true               // Hide or show the buttons to filter by whole words and distinguish in upper and lower case
+    filterByColumns: true                // Filter by to enter a data per column and perform a more exhaustive search. Takes precedence over simple filter
     fullscreen: true
     exportExcel: true
     exportPdf: true
@@ -97,7 +99,6 @@ npm install jspdf jspdf-autotable
     classTable: 'boostrap'               // Only supports 'boostrap' or 'material'
     language: { name: 'spanish' }        // Only values 'spanish' or 'english'. * If you want a new language or modify the existing one, you must configure it as indicated on line 100,
     onlyTable: false                     // If it is specified in true it only shows the block of the table
-    matchWordButtons: true               // Hide or show the buttons to filter by whole words and distinguish in upper and lower case
 
 
 =
@@ -143,7 +144,9 @@ npm install jspdf jspdf-autotable
     restore: 'Restore',
     visualize: 'Visualize',
     matchWholeWord: 'Match whole word',
-    matchCase: 'Match case'
+    matchCase: 'Match case',
+    filterByColumns: 'Filter by columns',
+    allOptions: 'All options'
 
 
     1. MODIFY LANGUAGE / TEXTS
@@ -200,6 +203,13 @@ npm install jspdf jspdf-autotable
     visible: true
     fixed: false,
     filtered: true
+    field: {                                                       // Object to indicate the field type of the form in case of using the filterByColumns of the table
+        type: 'text';                      
+        size: 12;
+        options: [];                                               // Options for select
+        method: null;                                              // Method located in the parent component where the table is instantiated for options of the select type
+        methodFiltered: null;                                      // Parameter for the method
+    }
 
     - Example build columns table:
 

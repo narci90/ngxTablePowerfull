@@ -1,4 +1,5 @@
 import { AttributesModel } from "./attributes.model";
+import { FieldModel } from './field.model';
 import { SortTableModel } from "./sortTable.model";
 import { SumaryColumnModel } from "./sumaryColumn.model";
 
@@ -22,6 +23,7 @@ export class ColumnTableModel{
     public visible: boolean = true;
     public fixed: boolean = false;
     public filtered: boolean = true;
+    public field: FieldModel;
 
 	constructor(item?: Partial<ColumnTableModel>) {
 		if (!!item) {

@@ -1,5 +1,6 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 import { NotificationNgxService } from 'src/ngxTablePowerfull/services/notificationNgx.service';
+import { AppService } from './app.service';
 import { sampleTableColumns } from './config/columns.config';
 import { sampleTableMock } from './mock/sampleTable.mock'
 
@@ -27,7 +28,7 @@ export class AppComponent {
     //classTable: 'material'
   };
 
-  constructor(private notificationNgxService : NotificationNgxService){}
+  constructor(private notificationNgxService : NotificationNgxService, private appService: AppService){}
 
 
   public captureEvent(e){
@@ -48,6 +49,10 @@ export class AppComponent {
   public checkedValue(values: any){
     console.log('You can only change it for a higher value');
     return values.newValue > values.oldValue ? true : false;
+  }
+
+  public async getOptionsName() : Promise<string[]>{
+    return await this.appService.getNames();
   }
 
 }

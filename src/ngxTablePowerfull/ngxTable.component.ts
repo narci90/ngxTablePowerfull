@@ -17,6 +17,7 @@ import { ActionsType } from './common/actions.type';
 import { GridColumnsComponent } from './components/gridColumns/gridColumns.component';
 import { StylesTypes, ThemeTypes } from './common/styles.types';
 import { DatePipe } from '@angular/common';
+import { FilterByColumnsComponent } from './components/filterByColumns/filterByColumns.component';
 
 @Component({
   selector: 'ngx-table-powerfull',
@@ -80,6 +81,7 @@ export class NgxTableComponent  {
     public matchCase: boolean = false;
     public matchWholeWord: boolean = false;
     public parent = null;
+    public searchByColumns: any = {};
 
     public getRowClass = (row: any) => {
 
@@ -189,6 +191,7 @@ export class NgxTableComponent  {
                 this.searchActions();
                 this.getAll();
                 if(!!this.config.filter && !this.config.onlyTable && !!this.search.nativeElement.value) this.updateFilter(this.search.nativeElement.value);
+                if(!!this.config.filterByColumns) this.applyFilteredByColumns();
                 this.updateSumaryColumns();
             }
 
@@ -199,6 +202,7 @@ export class NgxTableComponent  {
                 this.searchActions();
                 this.buildFilterByColumns();
                 if(!!this.config.filter && !this.config.onlyTable && !!this.search.nativeElement.value) this.updateFilter(this.search.nativeElement.value);
+                if(!!this.config.filterByColumns) this.applyFilteredByColumns();
                 this.updateSumaryColumns();
             }
 
@@ -244,6 +248,7 @@ export class NgxTableComponent  {
             if(!!data.exportPdf) this.export(ExportsType.PDF);
 
             if(!!this.config.filter && !this.config.onlyTable && !!this.search.nativeElement.value) this.updateFilter(this.search.nativeElement.value);
+            if(!!this.config.filterByColumns) this.applyFilteredByColumns();
             this.resize(10);
         });
 
@@ -1007,6 +1012,8 @@ export class NgxTableComponent  {
                 const numSumaryColumns = !!this.sumaryColumns.length;
                 this.sumaryColumns = this.columns.filter(c =>  !!c.visible && !!new ColumnTableModel(c).sumary.length);
                 this.updateSumaryColumns();
+                this.updateFilter(this.search.nativeElement.value);
+                this.applyFilteredByColumns();
                 this.deleteColumnOuput.emit({ name: ActionsType.DELETE_COLUMN, column: deleteColumn[0] });
 
                 if(numSumaryColumns !== !!this.sumaryColumns.length) this.resize(10);
@@ -1137,6 +1144,60 @@ export class NgxTableComponent  {
             if(numSumaryColumns !== !!this.sumaryColumns.length) this.resize(10);
            
         });
+    }
+
+    public filterByColumns(){
+        const dialogConfig = Object.assign(new MatDialogConfig(), {
+            disableClose: true,
+            autoFocus: true,
+            top: 0,
+            right: 0,
+            panelClass: 'right-fixed',
+            data: {
+                columns: this.columns.filter(col => !col.hide && !col.action),
+                config: this.config,
+                parent: this.parent,
+                oldSearch: this.searchByColumns
+            }
+        });
+        const dialog = this.dialog.open(FilterByColumnsComponent, dialogConfig);
+        dialog.afterClosed().subscribe(data => {
+
+            if(!data) return;
+           
+            this.searchByColumns = data;
+            this.applyFilteredByColumns();
+        });
+
+    }
+
+    public applyFilteredByColumns(){
+        
+        const columnFormat = this.columns.filter(c => !!c.formatDate);
+        const columnsFilter = this.selectedColumnsFilter.map( c => c.item_id);
+        const search =  Object.keys(this.searchByColumns).filter( k => !!columnsFilter.includes(k));
+
+        this.rows = this.temp = this.data.filter(item => {
+
+            return search.every( k => {
+
+                if(!!this.searchByColumns[k] && !!item.hasOwnProperty(k)){
+                    
+                    const column = columnFormat.find(c => c.prop == k);
+
+                    return !!column
+                        ? (this.datePipe.transform(new Date(this.searchByColumns[k]), column.formatDate).toString())
+                            .indexOf(this.datePipe.transform(item[k], column.formatDate).toString()) !== -1
+                        : this.searchByColumns[k].indexOf(item[k].toString().trim()) !== -1;
+                } else
+                    return true;
+                
+            });
+
+        });
+
+        this.updateFilter(this.search.nativeElement.value);
+        this.updateSumaryColumns();
     }
 
     ngOnDestroy(){

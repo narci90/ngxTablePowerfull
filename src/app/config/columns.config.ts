@@ -7,12 +7,20 @@ export const sampleTableColumns = [
       {
         prop: 'name',
         name: 'Name',
-        //flexGrow: 4
+        //flexGrow: 4,
+        field: {
+          type: 'select',
+          method: 'getOptionsName'
+        }
       },
       {
         prop: 'weight',
         name: 'Weight',
         editable: true,
+        field: {
+          type: 'number',
+          size: 6
+        },
         sumary: [
             {
                 type: 0,
@@ -27,7 +35,11 @@ export const sampleTableColumns = [
       {
         prop: 'birthdate',
         name: 'Birthdate',
-        formatDate: 'dd/MM/yyyy'
+        formatDate: 'dd/MM/yyyy',
+        field: {
+          type: 'date',
+          size: 6
+        }
       },
       {
         prop: 'delete',

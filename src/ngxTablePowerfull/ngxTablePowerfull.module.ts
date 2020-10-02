@@ -10,13 +10,15 @@ import { NgxTableService } from './services/ngxTable.service';
 import { NotificationNgxService } from './services/notificationNgx.service';
 import { MaterialModule } from './modules/material.module';
 import { GridColumnsComponent } from './components/gridColumns/gridColumns.component';
+import { FilterByColumnsComponent } from './components/filterByColumns/filterByColumns.component';
 
 @NgModule({
   declarations: [
     NgxTableComponent,
     NgxTableDialogComponent,
     EditColumnDialogComponent,
-    GridColumnsComponent
+    GridColumnsComponent,
+    FilterByColumnsComponent
   ],
   imports: [
     CommonModule,
@@ -28,7 +30,8 @@ import { GridColumnsComponent } from './components/gridColumns/gridColumns.compo
   entryComponents:[
     NgxTableDialogComponent,
     EditColumnDialogComponent,
-    GridColumnsComponent
+    GridColumnsComponent,
+    FilterByColumnsComponent
   ],
   providers: [
     NgxTableService,
@@ -38,7 +41,8 @@ import { GridColumnsComponent } from './components/gridColumns/gridColumns.compo
     NgxTableComponent,
     NgxTableDialogComponent,
     EditColumnDialogComponent,
-    GridColumnsComponent
+    GridColumnsComponent,
+    FilterByColumnsComponent
   ]
 })
 

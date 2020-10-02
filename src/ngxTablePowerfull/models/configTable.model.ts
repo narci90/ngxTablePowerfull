@@ -7,6 +7,7 @@ export class ConfigTableModel{
     public visibleTitle: boolean = true;
     public filter: boolean = true;
     public filterByColumn: boolean = true;
+    public filterByColumns: boolean = true;
     public fullscreen: boolean = true;
     public exportExcel: boolean = true;
     public exportPdf: boolean = true;
