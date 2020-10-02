@@ -1152,7 +1152,7 @@ export class NgxTableComponent  {
             autoFocus: true,
             top: 0,
             right: 0,
-            panelClass: 'right-fixed',
+            panelClass: 'right-fixed-filter',
             data: {
                 columns: this.columns.filter(col => !col.hide && !col.action),
                 config: this.config,
