@@ -39,6 +39,7 @@
                         #[col.prop]="ngModel">
 
                         <mat-select *ngIf="col.field.type == fieldsType.SELECT" [id]="col.prop" [name]="col.prop" [(ngModel)]="obj[col.prop]" #[col.prop]="ngModel">
+                            <mat-option>{{ data.config.language.allOptions }}</mat-option>
                             <mat-option *ngFor="let option of col.field.options" [value]="option">{{ option }}</mat-option>
                         </mat-select>
 
