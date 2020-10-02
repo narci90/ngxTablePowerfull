@@ -1146,6 +1146,11 @@ export class NgxTableComponent  {
         });
     }
 
+    /**
+     * filterByColumns
+     *
+     * Open the side dialog for the filter by columns
+     */
     public filterByColumns(){
         const dialogConfig = Object.assign(new MatDialogConfig(), {
             disableClose: true,
@@ -1171,6 +1176,11 @@ export class NgxTableComponent  {
 
     }
 
+     /**
+     * applyFilteredByColumns
+     *
+     * Filter to search for a data for each column and to be able to extract data more exactly
+     */
     public applyFilteredByColumns(){
         
         const columnFormat = this.columns.filter(c => !!c.formatDate);
@@ -1198,6 +1208,15 @@ export class NgxTableComponent  {
 
         this.updateFilter(this.search.nativeElement.value);
         this.updateSumaryColumns();
+    }
+
+     /**
+     * hasDataFilterByColumns
+     *
+     * Validation that checks if the filter by columns is active
+     */
+    public get hasDataFilterByColumns(){
+        return !!this.searchByColumns && !!Object.keys(this.searchByColumns).length && !!Object.keys(this.searchByColumns).some(k => !!this.searchByColumns[k]);
     }
 
     ngOnDestroy(){

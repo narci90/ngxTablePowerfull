@@ -320,6 +320,14 @@ datatable-scroller {
   }
 }
 
+.filter-active {
+  color: #58D68D !important;
+  &:hover{
+    color: #27AE60 !important;
+  }
+}
+
+
 .edit-icon{
   cursor: pointer;
   font-size: 20px;

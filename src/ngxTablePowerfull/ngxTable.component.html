@@ -75,7 +75,7 @@
 
             <div *ngIf="!!config.editableColumns" class="col-12 col-lg-12 add-column">
                 <i *ngIf="!!config.configureColumns" class="material-icons configure" [matTooltip]="config.language.configureColumns" (click)="configureColumns()">view_headline</i>
-                <i *ngIf="!!config.filterByColumns" class="material-icons edit" [matTooltip]="config.language.filterByColumns" (click)="filterByColumns()">filter_alt</i>
+                <i *ngIf="!!config.filterByColumns" class="material-icons edit" [class.filter-active]="!!hasDataFilterByColumns" [matTooltip]="config.language.filterByColumns + (!!hasDataFilterByColumns ? ' : Activo' : '' )" (click)="filterByColumns()">filter_alt</i>
                 <i *ngIf="!!config.editColumn" class="material-icons edit" [matTooltip]="config.language.editColumn" (click)="editColumn()">edit</i>
                 <i *ngIf="!!config.addColumn" class="material-icons add" [matTooltip]="config.language.newColumn" (click)="addColumn()">add</i>
                 <i *ngIf="!!config.deleteColumn" class="material-icons delete" [matTooltip]="config.language.deleteColumn" (click)="deleteColumn()">delete</i>
