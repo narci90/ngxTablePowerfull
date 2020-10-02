@@ -29,7 +29,7 @@ export class ConfigTableModel{
     public collapsed: boolean = false;
     public subtractHeight: number = 550;
     public subtractHeightCollapsed: number = 788;
-    public minHeight: number = 0;
+    public minHeight: number = 300;
     public positionSumary: string = 'left';
     public primaryColor: string = '#17703E';
     public secondaryColor: string = '#EC7063'
