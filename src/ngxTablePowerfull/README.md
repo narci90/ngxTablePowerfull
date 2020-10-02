@@ -146,7 +146,8 @@ npm install jspdf jspdf-autotable
     matchWholeWord: 'Match whole word',
     matchCase: 'Match case',
     filterByColumns: 'Filter by columns',
-    allOptions: 'All options'
+    allOptions: 'All options',
+    active: 'Active'
 
 
     1. MODIFY LANGUAGE / TEXTS

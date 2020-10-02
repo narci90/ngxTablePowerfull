@@ -43,7 +43,8 @@ export const Language = [
             matchWholeWord: 'Palabra exacta',
             matchCase: 'Distinción entre mayusculas y minúsculas',
             filterByColumns: 'Filtro por columnas',
-            allOptions: 'Todas las opciones'
+            allOptions: 'Todas las opciones',
+            active: 'Activo'
         }
     },
     {   
@@ -90,7 +91,8 @@ export const Language = [
             matchWholeWord: 'Match whole word',
             matchCase: 'Match case',
             filterByColumns: 'Filter by columns',
-            allOptions: 'All options'
+            allOptions: 'All options',
+            active: 'Active'
         }
     }
 
