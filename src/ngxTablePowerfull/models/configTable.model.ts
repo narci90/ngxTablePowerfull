@@ -48,6 +48,7 @@ export class ConfigTableModel{
     public onlyTable: boolean = false;
     public matchWordButtons: boolean = true;
     public footCounterSuffix: boolean = false; 
+    public showIconOnlyHover: boolean = true;
 
 	constructor(item?: Partial<ConfigTableModel>) {
 		if (!!item) {

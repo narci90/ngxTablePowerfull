@@ -1,3 +1,4 @@
+import { TemplateRef } from '@angular/core';
 import { AttributesModel } from "./attributes.model";
 import { FieldModel } from './field.model';
 import { SortTableModel } from "./sortTable.model";
@@ -24,6 +25,8 @@ export class ColumnTableModel{
     public fixed: boolean = false;
     public filtered: boolean = true;
     public field: FieldModel;
+    public showInDialogContent: boolean = false;
+    public dialogContentView: string = null;
 
 	constructor(item?: Partial<ColumnTableModel>) {
 		if (!!item) {

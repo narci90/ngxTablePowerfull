@@ -1,4 +1,4 @@
-import { Component, ViewChild, Input, Output, EventEmitter, HostListener, ViewEncapsulation, ViewContainerRef } from '@angular/core';
+import { Component, ViewChild, Input, Output, EventEmitter, HostListener, ViewEncapsulation, ViewContainerRef, TemplateRef } from '@angular/core';
 import { fromEvent, Subscription } from 'rxjs';
 import { map, debounceTime } from 'rxjs/operators';
 import { ColumnTableModel } from './models/columnTable.model';
@@ -28,7 +28,6 @@ import { FilterByColumnsComponent } from './components/filterByColumns/filterByC
 })
 export class NgxTableComponent  {
 
-    @ViewChild('search', {static: false}) search: any;
     public temp: Array<object>;
     public rows: Array<object>;
     public backgroundActiveRow: string;
@@ -37,6 +36,7 @@ export class NgxTableComponent  {
     public subscriptionChanges: Subscription;
     public fullscreen: boolean;
     public lastSortEvent: any;
+    public templateContent: any;
     @Input() public name: string;
     @Input() public config: ConfigTableModel = new ConfigTableModel();
     @Input() public columns: ColumnTableModel[];
@@ -56,6 +56,8 @@ export class NgxTableComponent  {
     @Output() public newColumn = new EventEmitter<any>();
     @Output(ActionsType.EDIT_COLUMN) public editColumnOuput = new EventEmitter<any>();
     @Output(ActionsType.DELETE_COLUMN) public deleteColumnOuput = new EventEmitter<any>();
+    @ViewChild('search', {static: false}) search: any;
+    @ViewChild('templateContentView', {static: false}) templateContentView: TemplateRef<any>;
 
     public editing = {};
     public alt: boolean = false;
@@ -82,6 +84,7 @@ export class NgxTableComponent  {
     public matchWholeWord: boolean = false;
     public parent = null;
     public searchByColumns: any = {};
+    public dialogReadMore: any;
 
     public getRowClass = (row: any) => {
 
@@ -301,7 +304,8 @@ export class NgxTableComponent  {
         } else 
            this.setPropertyCss({ key: StylesTypes.BOX_SHADOW_TABLE, value: 'none' });
 
-  
+        
+        if(!this.config.showIconOnlyHover) this.setPropertyCss({ key: StylesTypes.SHOW_ICON_ONLY_HOVER, value: '#95A5A6' });  
     }
 
     /**
@@ -1185,7 +1189,7 @@ export class NgxTableComponent  {
      * Filter to search for a data for each column and to be able to extract data more exactly
      */
     public applyFilteredByColumns(){
-        
+        console.log(this.searchByColumns);
         const columnFormat = this.columns.filter(c => !!c.formatDate);
         const columnsFilter = this.selectedColumnsFilter.map( c => c.item_id);
         const search =  Object.keys(this.searchByColumns).filter( k => !!columnsFilter.includes(k));
@@ -1199,9 +1203,9 @@ export class NgxTableComponent  {
                     const column = columnFormat.find(c => c.prop == k);
 
                     return !!column
-                        ? (this.datePipe.transform(new Date(this.searchByColumns[k]), column.formatDate).toString())
-                            .indexOf(this.datePipe.transform(item[k], column.formatDate).toString()) !== -1
-                        : this.searchByColumns[k].indexOf(item[k].toString().trim()) !== -1;
+                        ? (this.datePipe.transform(item[k], column.formatDate).toString())
+                            .indexOf(this.datePipe.transform(new Date(this.searchByColumns[k]), column.formatDate).toString()) !== -1
+                        : item[k].toString().toLowerCase().trim().indexOf(this.searchByColumns[k].toString().toLowerCase().trim()) !== -1;
                 } else
                     return true;
                 
@@ -1220,6 +1224,27 @@ export class NgxTableComponent  {
      */
     public get hasDataFilterByColumns(){
         return !!this.searchByColumns && !!Object.keys(this.searchByColumns).length && !!Object.keys(this.searchByColumns).some(k => !!this.searchByColumns[k]);
+    }
+
+
+    /**
+     * showInDialogContent
+     *
+     * Opens a dialog with the complete content of the row
+     */
+    public async showInDialogContent(row: any, colum: ColumnTableModel){
+
+        if(!!this.beforeAction && 
+            this.actionsTocontrol.includes(ActionsType.READ_MORE) && 
+            !(await this.beforeAction.call(this.parent,{ name: ActionsType.READ_MORE, row: row, cell: { column: colum , value:  row[colum.prop] } }))) 
+                return;
+
+        this.templateContent = { title: colum.name, content: row[colum.prop] , contentView: colum.dialogContentView || null };
+
+        this.dialogReadMore = this.dialog.open(this.templateContentView, {
+            minHeight: '200px',
+            minWidth: '400px'
+        });
     }
 
     ngOnDestroy(){

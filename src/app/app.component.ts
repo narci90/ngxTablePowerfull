@@ -25,7 +25,9 @@ export class AppComponent {
     headerHeight: 35,
     visibleBorderHeader: true,
     rowHeight: 35,
-    //classTable: 'material'
+    //classTable: 'material',
+    //footCounterSuffix: true,
+
   };
 
   constructor(private notificationNgxService : NotificationNgxService, private appService: AppService){}

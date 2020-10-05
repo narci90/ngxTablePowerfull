@@ -8,6 +8,8 @@ export const sampleTableColumns = [
         prop: 'name',
         name: 'Name',
         //flexGrow: 4,
+        showInDialogContent: true,
+        editable: true,
         field: {
           type: 'select',
           method: 'getOptionsName'

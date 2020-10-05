@@ -19,6 +19,7 @@
   --header-height-column: 50px;
   --setting-word-margin-right: 15px;
   --any-background-filter-by-column: #fff;
+  --show-icon-only-hover: transparent;
 }
 
 %transition-standard {
@@ -333,7 +334,7 @@ datatable-scroller {
   cursor: pointer;
   font-size: 20px;
   margin-left: 10px;
-  color: transparent;
+  color: var(--show-icon-only-hover);
   &:hover{
     color: #5DADE2 !important;
   }
@@ -455,6 +456,31 @@ datatable-scroller {
   &:hover{
       color: #EC7063;
   }
+}
+
+.templateContentHeader {
+  width: 100%;
+  .subject{
+    color: var(--primary-color);
+  }
+
+  h4{
+    color: var(--primary-color);
+  }
+}
+
+.datatable-body-cell-label {
+  overflow: hidden;
+  display: flex;
+  width: 100%;
+
+  .ellipsis {
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: block;
+  }
+  
 }
 
 @media(max-width: 992px){

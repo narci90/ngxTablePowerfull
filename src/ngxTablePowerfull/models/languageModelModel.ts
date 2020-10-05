@@ -40,6 +40,11 @@ export class LanguageModel{
     public visualize: string = '';
     public matchWholeWord: string = '';
     public matchCase: string = '';
+    public filterByColumns: string ='';
+    public allOptions: string = '';
+    public active: string = '';
+    public edit: string = '';
+    public readMore: string = '';
     
 	constructor(item?: Partial<LanguageModel>) {
 		if (!!item) {

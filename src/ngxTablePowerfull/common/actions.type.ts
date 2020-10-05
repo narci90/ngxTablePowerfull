@@ -8,5 +8,6 @@ export enum ActionsType {
     SINGLE_SELECTION = 'singleSelection',
     MULTIPLE_SELECTION = 'multipleSelection',
     VISIBLE_DATA_TABLE = 'visibleDataTable',
-    DATA_TABLE = 'dataTable'
+    DATA_TABLE = 'dataTable',
+    READ_MORE = 'readMore'
 };

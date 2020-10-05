@@ -44,7 +44,9 @@ export const Language = [
             matchCase: 'Distinción entre mayusculas y minúsculas',
             filterByColumns: 'Filtro por columnas',
             allOptions: 'Todas las opciones',
-            active: 'Activo'
+            active: 'Activo',
+            edit: 'Editar',
+            readMore: 'Ver más'
         }
     },
     {   
@@ -92,7 +94,9 @@ export const Language = [
             matchCase: 'Match case',
             filterByColumns: 'Filter by columns',
             allOptions: 'All options',
-            active: 'Active'
+            active: 'Active',
+            edit: 'Edit',
+            readMore: 'Read More'
         }
     }
 

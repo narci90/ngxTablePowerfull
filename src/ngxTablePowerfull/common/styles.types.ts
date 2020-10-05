@@ -18,5 +18,6 @@ export enum StylesTypes {
     VISIBLE_BORDER_HEADER = '--visible-border-header',
     HEADER_HEIGHT_COLUMN = '--header-height-column',
     SETTING_WORD_MARGIN_RIGHT = '--setting-word-margin-right',
-    ANY_BACKGROUND_FILTER_BY_COLUMN = '--any-background-filter-by-column'
+    ANY_BACKGROUND_FILTER_BY_COLUMN = '--any-background-filter-by-column',
+    SHOW_ICON_ONLY_HOVER = '--show-icon-only-hover'
 };
