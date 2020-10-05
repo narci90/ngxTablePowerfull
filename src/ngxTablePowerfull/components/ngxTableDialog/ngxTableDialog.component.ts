@@ -28,7 +28,8 @@ export class NgxTableDialogComponent {
     multipleSelection: false,
     classTable: this.data.config.classTable,
     language: this.data.config.language,
-    columnMode: this.data.config.columnMode
+    columnMode: this.data.config.columnMode,
+    footCounterSuffix: this.data.config.footCounterSuffix
   });
 
   constructor(

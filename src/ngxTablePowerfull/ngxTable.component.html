@@ -175,7 +175,7 @@
                 <hr style="width:100%" />
 
                 <div class="bottom-footer" [style.height]="config.footerHeight + 'px'">
-                    <div class="number-row-info">{{ rowCount }}</div>
+                    <div class="number-row-info">{{ rowCount }}{{ !!config.footCounterSuffix ? ' ' + config.language.rows : ''}}</div>
 
                     <datatable-pager
                     class="container-pager"

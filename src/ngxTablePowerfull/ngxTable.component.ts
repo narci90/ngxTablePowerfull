@@ -295,10 +295,13 @@ export class NgxTableComponent  {
                 { key: StylesTypes.DROPDOWN_BORDER, value: 'transparent' },
                 { key: StylesTypes.DROPDOWN_BORDER_RADIUS, value: '0' },
                 { key: StylesTypes.DROPDOWN_BORDER_BOTTOM, value: 'grey' },
-                { key: StylesTypes.SETTING_WORD_MARGIN_RIGHT, value: '6px' }
+                { key: StylesTypes.SETTING_WORD_MARGIN_RIGHT, value: '6px' },
+                { key: StylesTypes.ANY_BACKGROUND_FILTER_BY_COLUMN, value: 'transparent'}
             );
         } else 
            this.setPropertyCss({ key: StylesTypes.BOX_SHADOW_TABLE, value: 'none' });
+
+  
     }
 
     /**
@@ -439,7 +442,7 @@ export class NgxTableComponent  {
                         });
                     }
 
-                    value +=`>${r[c.prop]}</${c.tag}>`;
+                    value +=`>${r[c.prop] || ''}</${c.tag}>`;
                     
                     r[c.prop] = value;
                 });

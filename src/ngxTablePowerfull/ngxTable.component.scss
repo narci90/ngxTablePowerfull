@@ -18,6 +18,7 @@
   --visible-border-header: 1px solid var(--border-table-color);
   --header-height-column: 50px;
   --setting-word-margin-right: 15px;
+  --any-background-filter-by-column: #fff;
 }
 
 %transition-standard {
@@ -218,7 +219,7 @@ datatable-scroller {
   border-bottom-color: var(--dropdown-border-bottom) !important;
   padding-top: 9px !important;
   padding-bottom: 9px !important;
-  background-color: #fff !important;
+  background-color: var(--any-background-filter-by-column);
 }
 .multiselect-dropdown[_ngcontent-c6] .dropdown-btn[_ngcontent-c6] .dropdown-down[_ngcontent-c6]{
   border-top: 10px solid #CED4DA !important;

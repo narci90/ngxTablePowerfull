@@ -17,5 +17,6 @@ export enum StylesTypes {
     BOX_SHADOW_TABLE = '--box-shadow-table',
     VISIBLE_BORDER_HEADER = '--visible-border-header',
     HEADER_HEIGHT_COLUMN = '--header-height-column',
-    SETTING_WORD_MARGIN_RIGHT = '--setting-word-margin-right'
+    SETTING_WORD_MARGIN_RIGHT = '--setting-word-margin-right',
+    ANY_BACKGROUND_FILTER_BY_COLUMN = '--any-background-filter-by-column'
 };

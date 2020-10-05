@@ -47,7 +47,8 @@ export class ConfigTableModel{
     public language: LanguageModel = new LanguageBuildModel(Language[0]).setting;
     public onlyTable: boolean = false;
     public matchWordButtons: boolean = true;
-    
+    public footCounterSuffix: boolean = false; 
+
 	constructor(item?: Partial<ConfigTableModel>) {
 		if (!!item) {
             Object.assign(this, item);
