@@ -28,6 +28,7 @@ export class ColumnTableModel{
     public showInDialogContent: boolean = false;
     public dialogContentView: string = null;
     public alignText: string = 'left';
+    public alignHeader: string = 'left';
 
 	constructor(item?: Partial<ColumnTableModel>) {
 		if (!!item) {

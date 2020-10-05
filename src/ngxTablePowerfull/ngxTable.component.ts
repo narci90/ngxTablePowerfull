@@ -166,8 +166,15 @@ export class NgxTableComponent  {
 
         }
 
-        this.columns.forEach(c =>{
+        const headerColumns = document.getElementsByClassName('datatable-header-cell-template-wrap'); 
+
+        let countColumnVisible = 0;
+        this.columns.forEach( c =>{
             if(!!c.index) this.indexColumn = c.prop;
+
+            headerColumns[countColumnVisible]['style'].justifyContent = c.alignHeader == 'center' || !!c.action ? 'center' : (c.alignHeader == 'right' ? 'flex-end' : 'flex-start' );
+
+            if(!c.hide && !!c.visible) countColumnVisible++;
         });
 
         this.resize(300);
@@ -1189,7 +1196,7 @@ export class NgxTableComponent  {
      * Filter to search for a data for each column and to be able to extract data more exactly
      */
     public applyFilteredByColumns(){
-        console.log(this.searchByColumns);
+
         const columnFormat = this.columns.filter(c => !!c.formatDate);
         const columnsFilter = this.selectedColumnsFilter.map( c => c.item_id);
         const search =  Object.keys(this.searchByColumns).filter( k => !!columnsFilter.includes(k));
