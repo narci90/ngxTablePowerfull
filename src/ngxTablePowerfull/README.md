@@ -98,7 +98,9 @@ npm install jspdf jspdf-autotable
     headerHeight: 50 // Number
     classTable: 'boostrap'               // Only supports 'boostrap' or 'material'
     language: { name: 'spanish' }        // Only values 'spanish' or 'english'. * If you want a new language or modify the existing one, you must configure it as indicated on line 100,
-    onlyTable: false                     // If it is specified in true it only shows the block of the table
+    onlyTable: false                     // If it is specified in true it only shows the block of the table,
+    footCounterSuffix: false;            // Show or hide the subfix in the footer row counter
+    showIconOnlyHover: true;             // It shows by default the action icons on a cell only when hovering over the row, in false it always shows it
 
 
 =
@@ -147,7 +149,9 @@ npm install jspdf jspdf-autotable
     matchCase: 'Match case',
     filterByColumns: 'Filter by columns',
     allOptions: 'All options',
-    active: 'Active'
+    active: 'Active',
+    edit: 'Edit',
+    readMore: 'Read More'
 
 
     1. MODIFY LANGUAGE / TEXTS
@@ -203,14 +207,16 @@ npm install jspdf jspdf-autotable
     predefinedData: 'data'                                         // Predefined data for the column if the property does not exist in the data model
     visible: true
     fixed: false,
-    filtered: true
+    filtered: true,
     field: {                                                       // Object to indicate the field type of the form in case of using the filterByColumns of the table
-        type: 'text';                      
-        size: 12;
-        options: [];                                               // Options for select
-        method: null;                                              // Method located in the parent component where the table is instantiated for options of the select type
-        methodFiltered: null;                                      // Parameter for the method
-    }
+        type: 'text',                      
+        size: 12,
+        options: [],                                               // Options for select
+        method: null,                                              // Method located in the parent component where the table is instantiated for options of the select type
+        methodFiltered: null,                                      // Parameter for the method
+    },
+    showInDialogContent: false                                     // Opens a dialog with the complete content of the cell
+    dialogContentView: null                                        // You can use it to customize the content that you want to display in the dialog opened when configuring "showInDialogContent: true"
 
     - Example build columns table:
 
@@ -270,7 +276,7 @@ npm install jspdf jspdf-autotable
                                                                                        // type boolean, to continue the action (true) or stop it (false). Your function will receive a parameter with the name of the action and the 
                                                                                        // affected rows or columns  
 
-    [actionsTocontrol]="Array of actions that will call name function of beforeAction" // Actions available to control by the user before being executed. [actionsTocontrol]="['newColumn', 'editColumn', 'deleteColumn', 'updateRow']"
+    [actionsTocontrol]="Array of actions that will call name function of beforeAction" // Actions available to control by the user before being executed. [actionsTocontrol]="['newColumn', 'editColumn', 'deleteColumn', 'updateRow', 'readMore']"
     [selected]="Data from the index column of the selected index row"
 
 
