@@ -131,7 +131,7 @@
 
                 <span 
                     *ngIf="!editing[row[indexColumn] + '-' + c.prop]" 
-                    class="ellipsis"
+                    [class]="'ellipsis ' + ( c.alignText == 'center' || !!c.action ? 'text-center' : ( c.alignText =='right' ? 'text-right' : 'text-left' ))"
                     [matTooltip]="(!!c.tooltip) ? ((!!c.tooltipText.length) ? c.tooltipText : (!!(c.formatDate) ? (row[c.prop] | date: c.formatDate) : row[c.prop]) ): null"
                     [innerHTML]="!!(c.formatDate) ? (row[c.prop] | date: c.formatDate) : row[c.prop]" (click)="(!!c.action) ? sendEvent(c.action, row) : ''"  
                     (dblclick)="(!!c.editable && !c.action) ? editing[row[indexColumn] + '-' + c.prop] = true : ''"

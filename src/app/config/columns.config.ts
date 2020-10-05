@@ -19,6 +19,7 @@ export const sampleTableColumns = [
         prop: 'weight',
         name: 'Weight',
         editable: true,
+        alignText: 'right',
         field: {
           type: 'number',
           size: 6

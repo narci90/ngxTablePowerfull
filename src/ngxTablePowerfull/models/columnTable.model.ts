@@ -27,6 +27,7 @@ export class ColumnTableModel{
     public field: FieldModel;
     public showInDialogContent: boolean = false;
     public dialogContentView: string = null;
+    public alignText: string = 'left';
 
 	constructor(item?: Partial<ColumnTableModel>) {
 		if (!!item) {
