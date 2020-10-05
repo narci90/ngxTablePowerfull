@@ -216,7 +216,7 @@
     <div class="d-flex templateContentHeader">
         <div><i class="material-icons subject mr-3" >subject</i></div>
         <div><h4>{{ templateContent.title }}</h4></div>
-        <div class="ml-auto" ><i [matTooltip]="config.language.close" class="material-icons" (click)="dialogReadMore.close()">close</i></div>
+        <div class="ml-auto" ><i [matTooltip]="config.language.close" class="material-icons" style="cursor: pointer;" (click)="dialogReadMore.close()">close</i></div>
     </div>
 
     <div class="templateContent pl-4 mt-2" [innerHTML]="!!templateContent.contentView ? templateContent.contentView : templateContent.content" ></div>
