@@ -1,5 +1,5 @@
 import { Component, ViewEncapsulation } from '@angular/core';
-import { NotificationNgxService } from 'src/ngxTablePowerfull/services/notificationNgx.service';
+import { NotificationNgxService } from '../ngxTablePowerfull/services/notificationNgx.service';
 import { AppService } from './app.service';
 import { sampleTableColumns } from './config/columns.config';
 import { sampleTableMock } from './mock/sampleTable.mock'
