@@ -189,7 +189,7 @@ export class NgxTableComponent  {
 
             if(data.collapsed != null) this.config.collapsed = data.collapsed;
             
-            if(!!data.rows.length){
+            if(!!data.rows){
                 this.data = data.rows;
                 if(this.indexColumn == this.defaultPropColumIndex){
                     this.data.forEach((data, i) => {
