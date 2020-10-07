@@ -347,6 +347,7 @@ Notification service provided by the one provided by the NgxTablepowerfull modul
     dataTable: true          // Request the current data visible or not by the user
     exportExcel: true        // Call export to excel from table
     exportPdf: true          // Call export to pdf from table
+    resetSelection: true     // Reset selection table
 
 -- Use example:
 

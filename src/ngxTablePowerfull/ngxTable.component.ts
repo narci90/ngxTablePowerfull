@@ -256,6 +256,7 @@ export class NgxTableComponent  {
 
             if(!!data.exportExcel) this.export(ExportsType.EXCEL);
             if(!!data.exportPdf) this.export(ExportsType.PDF);
+            if(!!data.resetSelection) this.resetSelction();
 
             if(!!this.config.filter && !this.config.onlyTable && !!this.search.nativeElement.value) this.updateFilter(this.search.nativeElement.value);
             if(!!this.config.filterByColumns) this.applyFilteredByColumns();
@@ -263,6 +264,7 @@ export class NgxTableComponent  {
         });
 
     }
+
 
     /**
      * onResize
@@ -387,7 +389,7 @@ export class NgxTableComponent  {
             this.columns.splice(0, 0 , new ColumnTableModel(index));
 
             this.data.forEach((data, i) => {
-                data[defaultProp] = i;
+                data[defaultProp] = i + 1;
             });
             
         }else{
@@ -476,7 +478,7 @@ export class NgxTableComponent  {
 
         if(e.type == ActionsType.CLICK || e.type == ActionsType.DBL_CLICK){ 
 
-            if(!!this.config.singleSelection && !!this.backgroundActiveRow && (!!e.event.altKey || !!e.event.ctrlKey || !!e.event.shiftKey))
+            if(!!this.config.singleSelection && !!this.config.multipleSelection && !!this.backgroundActiveRow && (!!e.event.altKey || !!e.event.ctrlKey || !!e.event.shiftKey))
                 this.singleSelection.emit({name: ActionsType.SINGLE_SELECTION, row: null});
 
             if(!e.event.shiftKey && !e.event.altKey && !e.event.ctrlKey){
@@ -579,6 +581,30 @@ export class NgxTableComponent  {
             }
             
         } 
+    }
+
+    /**
+     * resetSelction
+     *
+     * Clears all selections on table rows at that time
+     *
+     */
+    public resetSelction(){
+
+        if(!!this.backgroundActiveRow)
+            this.singleSelection.emit({ name: ActionsType.SINGLE_SELECTION, row: null });
+
+        if(!!this.rowsTempTableAdd.length)
+            this.multipleSelection.emit({ name: ActionsType.MULTIPLE_SELECTION, rows: [] });
+
+        this.backgroundActiveRow = null;
+
+        this.rowsTempTableAdd = [];
+        this.backgroundActiveRow = null;
+        this.firstIndexAltKey = null;
+        this.alt = false;
+        this.asc = true;
+
     }
 
     /**

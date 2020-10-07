@@ -8,6 +8,7 @@ export class NotificationTableModel{
     public dataTable: boolean = false;
     public exportExcel: boolean = false;
     public exportPdf: boolean = false;
+    public resetSelection: boolean = true;
 
 	constructor(item?: Partial<NotificationTableModel>) {
 		if (!!item) {
