@@ -144,6 +144,11 @@ datatable-scroller {
   max-width: 100vw !important;
   width: 100vw !important;
   margin: 0 !important;
+  > div {
+    > div {
+      height: 100%;
+    }
+  }
 }
 
 .button-fullscreen {
