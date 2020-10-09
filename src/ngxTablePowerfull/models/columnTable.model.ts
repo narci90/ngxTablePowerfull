@@ -29,6 +29,7 @@ export class ColumnTableModel{
     public dialogContentView: string = null;
     public alignText: string = 'left';
     public alignHeader: string = 'left';
+    public evaluateValueMethod: string = null;
 
 	constructor(item?: Partial<ColumnTableModel>) {
 		if (!!item) {

@@ -218,7 +218,8 @@ npm install jspdf jspdf-autotable
     showInDialogContent: false                                     // Opens a dialog with the complete content of the cell
     dialogContentView: null                                        // You can use it to customize the content that you want to display in the dialog opened when configuring "showInDialogContent: true"
     alignText: 'left',
-    alignHeader: 'left'
+    alignHeader: 'left',
+    evaluateValueMethod: null                                      // Indicate method located in your component, which should return the value which will be assigned to the row
 
     - Example build columns table:
 

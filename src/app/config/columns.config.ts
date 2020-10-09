@@ -57,6 +57,7 @@ export const sampleTableColumns = [
               name: 'class',
               value: 'material-icons delete-icon'
             }
-        ]
+        ],
+        evaluateValueMethod: 'visibleAction'
       } 
 ];

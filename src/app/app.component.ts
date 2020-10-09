@@ -57,4 +57,8 @@ export class AppComponent {
     return await this.appService.getNames();
   }
 
+  public visibleAction(column: any, row: any){
+    return row.name == 'Astrid' ? null : row.delete;
+  }
+
 }

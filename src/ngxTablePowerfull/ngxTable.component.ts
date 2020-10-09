@@ -680,6 +680,8 @@ export class NgxTableComponent  {
      */
     public getAll() {
 
+        this.checkConditionRowValue();
+
         let data = this.data;
 
         this.temp = data;
@@ -1278,6 +1280,20 @@ export class NgxTableComponent  {
             minHeight: '200px',
             minWidth: '400px'
         });
+    }
+
+    /**
+     * checkConditionRowValue
+     *
+     * Call method in parent and evaluate value
+     */
+    public async checkConditionRowValue(){
+
+        this.columns.forEach(c => {
+            if(!!c.evaluateValueMethod)
+                this.data.forEach( r => r[c.prop] = this.parent[c.evaluateValueMethod](c, r));
+        });
+
     }
 
     ngOnDestroy(){
