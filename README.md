@@ -219,7 +219,7 @@ npm install jspdf jspdf-autotable
     dialogContentView: null,                                       // You can use it to customize the content that you want to display in the dialog opened when configuring "showInDialogContent: true"
     alignText: 'left',
     alignHeader: 'left'   
-    evaluateValueMethod: null                                      // methodYourComponent(column, row). Indicate method located in your component, which should return the value which will be assigned to the row          
+    evaluateValueMethod: null                                      // methodYourComponent(column?, row?). Indicate method located in your component, which should return the value which will be assigned to the row          
 
     - Example build columns table:
 
