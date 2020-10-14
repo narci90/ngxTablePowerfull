@@ -220,7 +220,8 @@ npm install jspdf jspdf-autotable
     alignText: 'left',
     alignHeader: 'left',
     evaluateValueMethod: null                                      // methodYourComponent(column?, row?). Indicate method located in your component, which should return the value which will be assigned to the row
-    visibleValueProperty: null                                     // Enter the name of the property that will be displayed although the table will continue to work with the original property of the original prop column back
+    visibleValueProperty: null                                     // Enter the name of the property that will be displayed although the table will continue to work with the original property of the original prop column back. 
+                                                                      Indicate $value --> will be translated by value of origanl property.
 
 
     - Example build columns table:
