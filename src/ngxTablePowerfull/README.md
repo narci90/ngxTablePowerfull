@@ -341,14 +341,14 @@ import NotificationNgxService of 'Services og NgxTablepowerfull module';
 
 Notification service provided by the one provided by the NgxTablepowerfull module itself called NotificationNgxService, accepts the following properties:
 
-    collapsed: true | false  // Collapsed the table or not according to the value
-    rows: [datas]            // Updates the data in the table view with the new values ​​entered
-    columns: [columns]       // Update column data in table view at runtime
-    visibleDataTable: true   // Request the data visible by the user at that time
-    dataTable: true          // Request the current data visible or not by the user
-    exportExcel: true        // Call export to excel from table
-    exportPdf: true          // Call export to pdf from table
-    resetSelection: true     // Reset selection table
+    collapsed: null (false | true)  // Collapsed the table or not according to the value
+    rows: [datas]                   // Updates the data in the table view with the new values ​​entered
+    columns: [columns]              // Update column data in table view at runtime
+    visibleDataTable: false         // Request the data visible by the user at that time
+    dataTable: false                // Request the current data visible or not by the user
+    exportExcel: false              // Call export to excel from table
+    exportPdf: false                // Call export to pdf from table
+    resetSelection: false           // Reset selection table
 
 -- Use example:
 
