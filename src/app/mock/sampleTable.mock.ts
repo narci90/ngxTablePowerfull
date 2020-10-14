@@ -1,6 +1,6 @@
 export const sampleTableMock = [
     { id: '4a811e68-2e3d-41bf-a561-56ffe851a753', name: 'is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scram', weight: 20, birthdate: new Date()},
-    { id: '914da11f-5445-4700-9203-e0dc341feb53', name: 'Archer', weight: 10, birthdate: new Date() },
+    { id: '914da11f-5445-4700-9203-e0dc341feb53', name: 'Archer', weight: 10, weightTable: '$value<i class="material-icons">arrow_upward</i>',birthdate: new Date() },
     { id: '9e2e25d9-3087-4003-abee-fce8645c52d8', name: 'Astrid', weight: 40, birthdate: new Date()  },
     { id: 'a42ed94a-f821-4cbe-8b30-e2868d8695a0', name: 'Birdie', weight: 50, birthdate: new Date()  },
     { id: '65fd2206-fc6f-4106-8a27-a0d74d6a74d4', name: 'Brooks', weight: 20, birthdate: new Date()  },

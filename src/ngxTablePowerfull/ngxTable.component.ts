@@ -1292,6 +1292,13 @@ export class NgxTableComponent  {
         this.columns.forEach(c => {
             if(!!c.evaluateValueMethod)
                 this.data.forEach( r => r[c.prop] = this.parent[c.evaluateValueMethod](c, r));
+            
+            if(!!c.visibleValueProperty){
+                this.data.forEach( r => { 
+                    if(!!r[c.visibleValueProperty])
+                        r[c.visibleValueProperty] = (r[c.visibleValueProperty]).replace(/\$value/gi,r[c.prop]);
+                });
+            }
         });
 
     }

@@ -33,7 +33,8 @@ export const sampleTableColumns = [
                 type: 1,
                 unit: 'Kg'
             }
-        ]
+        ],
+        visibleValueProperty: 'weightTable'
       },
       {
         prop: 'birthdate',
