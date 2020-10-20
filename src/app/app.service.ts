@@ -5,8 +5,8 @@ export class AppService {
 
   constructor() { }
 
-  public getNames(): string[] {
-    return ['Archer','Sam', 'Astrid'];
+  public getNames(): any[] {
+    return ['Archer','Sam', { value: '1', text: 'Astrid'} ];
   }
 
 
