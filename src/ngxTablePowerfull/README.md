@@ -211,7 +211,7 @@ npm install jspdf jspdf-autotable
     field: {                                                       // Object to indicate the field type of the form in case of using the filterByColumns of the table
         type: 'text',                      
         size: 12,
-        options: [],                                               // Options for select
+        options: [],                                               // Options for select ( array string  || array object : { value: any, text: string } )
         method: null,                                              // Method located in the parent component where the table is instantiated for options of the select type
         methodFiltered: null,                                      // Parameter for the method
     },
