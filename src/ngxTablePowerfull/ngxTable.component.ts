@@ -108,7 +108,7 @@ export class NgxTableComponent  {
         this.rows = [];
         this.indexColumn = '';
         this.lastSortEvent = null;
-        this.parent = this.viewContainerRef.parentInjector['view'].component;
+        this.parent = this.viewContainerRef.injector['view'].component;
 
     }
 
