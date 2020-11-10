@@ -1229,11 +1229,12 @@ export class NgxTableComponent  {
         const columnsFilter = this.selectedColumnsFilter.map( c => c.item_id);
         const search =  Object.keys(this.searchByColumns).filter( k => !!columnsFilter.includes(k));
 
+        console.log(this.searchByColumns);
         this.rows = this.temp = this.data.filter(item => {
 
             return search.every( k => {
 
-                if(!!this.searchByColumns[k] && !!item.hasOwnProperty(k)){
+                if(this.searchByColumns[k] != null && !!item.hasOwnProperty(k)){
                     
                     const column = columnFormat.find(c => c.prop == k);
 

@@ -20,7 +20,7 @@
         
                 <select *ngIf="col.field.type == fieldsType.SELECT" [id]="col.prop" [name]="col.prop" class="form-control" [(ngModel)]="obj[col.prop]" #[col.prop]="ngModel">
                     <option value="" selected>{{ data.config.language.allOptions }}</option>
-                    <option *ngFor="let option of col.field.options" [value]="option.value || option">{{ option.text || option }}</option>
+                    <option *ngFor="let option of col.field.options" [value]="option.value != null ? option.value : option">{{ option.text || option }}</option>
                 </select>
 
             </ng-container>
