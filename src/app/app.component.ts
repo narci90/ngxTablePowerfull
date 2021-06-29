@@ -40,7 +40,7 @@ export class AppComponent {
     }
   }
 
-  public myFuncion(action): Promise<boolean>{
+  public myFunction(action): Promise<boolean>{
     return new Promise<boolean>(async (resolve) => {
 
         if(action.name === 'updateRow' && action.cell.column.prop == 'weight')
