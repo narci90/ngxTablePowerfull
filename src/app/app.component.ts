@@ -43,8 +43,10 @@ export class AppComponent {
   public myFunction(action): Promise<boolean>{
     return new Promise<boolean>(async (resolve) => {
 
-        if(action.name === 'updateRow' && action.cell.column.prop == 'weight')
-          resolve(this.checkedValue(action.cell));
+        (action.name === 'updateRow' && action.cell.column.prop == 'weight')
+          ? resolve(this.checkedValue(action.cell))
+          : resolve(this.checkedValue(action.cell));
+
     });
   }
 
